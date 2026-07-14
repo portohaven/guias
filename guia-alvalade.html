@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alvalade — Guest Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f7f5f0;color:#1a1a1a}
+.hero{background:#1a1a1a;color:#fff;padding:2rem 1.25rem 1.5rem}
+.hero-tag{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:6px}
+.hero-title{font-size:26px;font-weight:600;margin-bottom:4px}
+.hero-sub{font-size:14px;color:#aaa;margin-bottom:1.25rem}
+.lang-toggle{display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:6px 16px;border-radius:20px;border:1px solid #444;background:transparent;color:#aaa;font-size:13px;cursor:pointer;transition:all 0.2s}
+.lang-btn.active{background:#fff;color:#1a1a1a;border-color:#fff}
+.hero-map{display:inline-flex;align-items:center;gap:6px;margin-top:1rem;color:#ccc;font-size:13px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px}
+.container{max-width:600px;margin:0 auto;padding:1rem}
+.section{background:#fff;border-radius:12px;margin-bottom:0.75rem;overflow:hidden;border:1px solid #ece9e3}
+.section-header{display:flex;align-items:center;gap:10px;padding:1rem 1.25rem;cursor:pointer;user-select:none}
+.section-icon{width:32px;height:32px;border-radius:8px;background:#f0ede8;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.section-title{font-size:15px;font-weight:600;flex:1;color:#1a1a1a}
+.section-chevron{font-size:18px;color:#999;transition:transform 0.25s}
+.section-body{padding:0 1.25rem 1.25rem;display:none}
+.section-body.open{display:block}
+.section-header.open .section-chevron{transform:rotate(180deg)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.75rem}
+.info-card{background:#f7f5f0;border-radius:8px;padding:0.75rem}
+.info-card-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+.info-card-value{font-size:15px;font-weight:600;color:#1a1a1a}
+.wifi-box{background:#1a1a1a;color:#fff;border-radius:10px;padding:1rem 1.25rem;margin-bottom:8px}
+.wifi-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+.wifi-value{font-size:16px;font-weight:600;font-family:monospace;letter-spacing:0.05em}
+.place{padding:10px 0;border-bottom:1px solid #f0ede8}
+.place:last-child{border-bottom:none}
+.place-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:3px}
+.place-name{font-size:14px;font-weight:600;color:#1a1a1a}
+.place-rating{font-size:12px;color:#f59e0b;font-weight:600;white-space:nowrap}
+.place-desc{font-size:12px;color:#666;line-height:1.4;margin-bottom:5px}
+.place-meta{font-size:11px;color:#999;margin-bottom:5px}
+.map-link{font-size:12px;color:#2563eb;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.rule{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:14px}
+.rule:last-child{border-bottom:none}
+.rule-icon{font-size:16px;width:24px;text-align:center}
+.tip{font-size:13px;color:#555;line-height:1.5;padding:8px 0}
+.service-item{padding:10px 0;border-bottom:1px solid #f0ede8}
+.service-item:last-child{border-bottom:none}
+.service-name{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.service-desc{font-size:12px;color:#666;margin-bottom:5px}
+.divider{height:1px;background:#f0ede8;margin:10px 0}
+.footer{text-align:center;padding:2rem 1rem;color:#999;font-size:12px}
+.emergency-box{background:#fff1f1;border:1px solid #fecaca;border-radius:10px;padding:1rem 1.25rem}
+.emergency-title{font-size:13px;font-weight:600;color:#991b1b;margin-bottom:8px}
+.emergency-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid #fecaca}
+.emergency-row:last-child{border-bottom:none}
+.emergency-label{color:#666}
+.emergency-num{font-weight:600;color:#1a1a1a}
+.notice{background:#fff8e6;border:1px solid #f0d080;border-radius:8px;padding:0.75rem 1rem;margin-top:0.75rem;display:flex;gap:8px}
+.notice p{font-size:13px;color:#7a5c00;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-tag">Lisbon Haven</div>
+  <div class="hero-title">Alvalade</div>
+  <div class="hero-sub" data-en="Rua Alberto Oliveira, 31 · Ground floor left · Lisbon" data-pt="Rua Alberto Oliveira, 31 · Rés-do-chão esquerdo · Lisboa" data-es="Rua Alberto Oliveira, 31 · Planta baja izquierda · Lisboa" data-fr="Rua Alberto Oliveira, 31 · Rez-de-chaussée gauche · Lisbonne">Rua Alberto Oliveira, 31 · Ground floor left · Lisbon</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('pt')">Português</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
+    <button class="lang-btn" onclick="setLang('fr')">Français</button>
+  </div>
+  <a href="https://maps.app.goo.gl/9x7QZz45LFiosCBV9" target="_blank" class="hero-map">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+</div>
+<div class="container">
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <div class="section-icon">🔑</div>
+      <div class="section-title" data-en="Check-in & check-out" data-pt="Check-in & check-out" data-es="Check-in & check-out" data-fr="Check-in & check-out">Check-in & check-out</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body open">
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label" data-en="Check-in" data-pt="Check-in" data-es="Check-in" data-fr="Check-in">Check-in</div><div class="info-card-value">16:00 – 00:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Check-out" data-pt="Check-out" data-es="Check-out" data-fr="Check-out">Check-out</div><div class="info-card-value" data-en="by 11:00" data-pt="até às 11:00" data-es="antes de las 11:00" data-fr="avant 11h00">by 11:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Drop bags (arrival)" data-pt="Deixar malas (chegada)" data-es="Dejar maletas (llegada)" data-fr="Déposer bagages (arrivée)">Drop bags (arrival)</div><div class="info-card-value" data-en="from 12:00" data-pt="a partir das 12:00" data-es="desde las 12:00" data-fr="à partir de 12h00">from 12:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Drop bags (departure)" data-pt="Deixar malas (saída)" data-es="Dejar maletas (salida)" data-fr="Déposer bagages (départ)">Drop bags (departure)</div><div class="info-card-value" data-en="until 13:00" data-pt="até às 13:00" data-es="hasta las 13:00" data-fr="jusqu'à 13h00">until 13:00</div></div>
+      </div>
+      <p class="tip" data-en="Self check-in. Your access code is sent 48 hours before arrival." data-pt="Self check-in. O código de acesso é enviado 48h antes." data-es="Self check-in. Tu código se envía 48h antes." data-fr="Self check-in. Votre code est envoyé 48h avant.">Self check-in. Your access code is sent 48 hours before arrival.</p>
+      <p class="tip" data-en="Unfortunately we cannot offer an early check-in or late check-out as we are normally fully booked, but you can drop your bags inside the apartment from 12:00 on arrival day, or leave your bags in the apartment at check-out until 13:00 maximum." data-pt="Infelizmente não conseguimos garantir early check-in ou late check-out, mas podes deixar as malas a partir das 12:00 ou até às 13:00 no dia de saída." data-es="Lamentablemente no podemos ofrecer early check-in ni late check-out, pero puedes dejar las maletas desde las 12:00 o hasta las 13:00 el día de salida." data-fr="Malheureusement, pas de check-in anticipé ni check-out tardif, mais dépôt bagages possible à partir de 12h00 ou jusqu'à 13h00 le jour du départ.">Unfortunately we cannot offer an early check-in or late check-out as we are normally fully booked, but you can drop your bags inside the apartment from 12:00 on arrival day, or leave your bags in the apartment at check-out until 13:00 maximum.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">📶</div>
+      <div class="section-title">Wi-Fi</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="wifi-box"><div class="wifi-label" data-en="Network" data-pt="Rede" data-es="Red" data-fr="Réseau">Network</div><div class="wifi-value">Vodafone-D81167</div></div>
+      <div class="wifi-box"><div class="wifi-label">Password</div><div class="wifi-value">N8hqT2TwT6</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title" data-en="Restaurants & cafés" data-pt="Restaurantes & cafés" data-es="Restaurantes & cafés" data-fr="Restaurants & cafés">Restaurants & cafés</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-header"><div class="place-name">Pomar de Alvalade</div><div class="place-rating">⭐ 4.2 · 985 reviews</div></div>
+        <div class="place-desc" data-en="Delicious, authentic Portuguese food at great value. Very busy — everything is super fresh. Steps away." data-pt="Comida portuguesa deliciosa e autêntica a ótimo preço. Muito concorrido — tudo muito fresco. A passos." data-es="Deliciosa comida portuguesa auténtica a muy buen precio. Muy concurrido — todo superfrescho. A pasos." data-fr="Délicieuse cuisine portugaise authentique à excellent rapport qualité-prix. Très fréquenté — tout est très frais.">Delicious, authentic Portuguese food at great value. Very busy — everything is super fresh. Steps away.</div>
+        <div class="place-meta" data-en="Mon–Sat 8:00–22:00" data-pt="Seg–Sáb 8h–22h" data-es="Lun–Sáb 8:00–22:00" data-fr="Lun–Sam 8h–22h">Mon–Sat 8:00–22:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJvTgW2qozGQ0RhJecOvh1Xfk" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Sem Nome</div><div class="place-rating">⭐ 4.3 · 478 reviews</div></div>
+        <div class="place-desc" data-en="Traditional Portuguese restaurant at reasonable prices. Very fresh fish, attentive service." data-pt="Restaurante português tradicional a preços razoáveis. Peixe muito fresco, serviço atencioso." data-es="Restaurante portugués tradicional a precios razonables. Pescado muy fresco, servicio atento." data-fr="Restaurant portugais traditionnel à prix raisonnables. Poisson très frais, service attentionné.">Traditional Portuguese restaurant at reasonable prices. Very fresh fish, attentive service.</div>
+        <div class="place-meta" data-en="Mon–Fri 12:00–15:00 & 19:00–22:00 · Sat 12:00–15:00" data-pt="Seg–Sex 12h–15h e 19h–22h · Sáb 12h–15h" data-es="Lun–Vie 12:00–15:00 y 19:00–22:00 · Sáb 12:00–15:00" data-fr="Lun–Ven 12h–15h et 19h–22h · Sam 12h–15h">Mon–Fri 12:00–15:00 & 19:00–22:00 · Sat 12:00–15:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJJSxPzaozGQ0R4RZNSrNU0HE" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Sea Me Alvalade</div><div class="place-rating">⭐ 4.2 · seafood</div></div>
+        <div class="place-desc" data-en="Contemporary seafood on Avenida da Igreja. Excellent oysters and octopus. Inventive menu." data-pt="Marisco contemporâneo na Avenida da Igreja. Ostras e polvo excelentes. Menu criativo." data-es="Marisco contemporáneo en la Avenida da Igreja. Excelentes ostras y pulpo. Menú creativo." data-fr="Fruits de mer contemporains sur l'Avenida da Igreja. Excellentes huîtres et poulpe. Menu inventif.">Contemporary seafood on Avenida da Igreja. Excellent oysters and octopus. Inventive menu.</div>
+        <div class="place-meta" data-en="Daily 12:00–15:30 & 19:30–23:00 (Fri–Sat until 00:00)" data-pt="Diário 12h–15h30 e 19h30–23h (Sex–Sáb até 00h)" data-es="Diario 12:00–15:30 y 19:30–23:00 (Vie–Sáb hasta 00:00)" data-fr="Quotidien 12h–15h30 et 19h30–23h (Ven–Sam jusqu'à 00h)">Daily 12:00–15:30 & 19:30–23:00 (Fri–Sat until 00:00)</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJww9Jn2UzGQ0RNG_hDgiY3zY" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Cafés & bakeries" data-pt="Cafés & padarias" data-es="Cafés & panaderías" data-fr="Cafés & boulangeries">Cafés & bakeries</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Do Beco Alvalade</div><div class="place-rating">⭐ 4.9 · 80 reviews</div></div>
+        <div class="place-desc" data-en="Artisanal bakery and specialty coffee. Exceptional yoghurt bowls and beautiful pastries. Right on your street!" data-pt="Padaria artesanal e café de especialidade. Yoghurt bowls excecionais e pastéis lindos. Mesmo na tua rua!" data-es="Panadería artesanal y café de especialidad. Yogur bowls excepcionales y pasteles preciosos. ¡En tu misma calle!" data-fr="Boulangerie artisanale et café de spécialité. Bols de yaourt exceptionnels et pâtisseries magnifiques. Dans votre rue !">Artisanal bakery and specialty coffee. Exceptional yoghurt bowls and beautiful pastries. Right on your street!</div>
+        <div class="place-meta" data-en="Mon–Fri 8:30–18:30 · Sat–Sun 9:00–19:00" data-pt="Seg–Sex 8h30–18h30 · Sáb–Dom 9h–19h" data-es="Lun–Vie 8:30–18:30 · Sáb–Dom 9:00–19:00" data-fr="Lun–Ven 8h30–18h30 · Sam–Dim 9h–19h">Mon–Fri 8:30–18:30 · Sat–Sun 9:00–19:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJwUQfbrUzGQ0R1niba0KwF6E" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Café Na Drogaria</div><div class="place-rating">⭐ 4.7 · local gem</div></div>
+        <div class="place-desc" data-en="Wonderfully welcoming café with lovely owners. Fresh pastries and great coffee. A Alvalade classic." data-pt="Café maravilhosamente acolhedor com donos adoráveis. Pastéis frescos e café ótimo. Um clássico de Alvalade." data-es="Café maravillosamente acogedor con dueños encantadores. Bollería fresca y café excelente. Un clásico de Alvalade." data-fr="Café merveilleusement accueillant avec de charmants propriétaires. Pâtisseries fraîches et excellent café.">Wonderfully welcoming café with lovely owners. Fresh pastries and great coffee. A Alvalade classic.</div>
+        <div class="place-meta" data-en="Mon–Fri 8:00–19:00 · Sat 8:00–13:00" data-pt="Seg–Sex 8h–19h · Sáb 8h–13h" data-es="Lun–Vie 8:00–19:00 · Sáb 8:00–13:00" data-fr="Lun–Ven 8h–19h · Sam 8h–13h">Mon–Fri 8:00–19:00 · Sat 8:00–13:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJn-54MlUyGQ0RHvmMnwxFlsM" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Cafélia</div><div class="place-rating">⭐ 4.7 · specialty coffee</div></div>
+        <div class="place-desc" data-en="One of Lisbon's best coffee shops. Outstanding selection of coffees, teas and biscuits. Cash only." data-pt="Uma das melhores lojas de café de Lisboa. Seleção extraordinária de cafés, chás e bolachas. Só dinheiro." data-es="Una de las mejores cafeterías de Lisboa. Extraordinaria selección de cafés, tés y galletas. Solo efectivo." data-fr="L'une des meilleures boutiques de café de Lisbonne. Sélection extraordinaire de cafés, thés et biscuits. Espèces uniquement.">One of Lisbon's best coffee shops. Outstanding selection of coffees, teas and biscuits. Cash only.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJDTJ2PakzGQ0RLPk-V0FQhyM" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🛒</div>
+      <div class="section-title" data-en="Supermarkets" data-pt="Supermercados" data-es="Supermercados" data-fr="Supermarchés">Supermarkets</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-header"><div class="place-name">Pingo Doce</div><div class="place-rating">⭐ 4.1 · 1.6k reviews</div></div>
+        <div class="place-desc" data-en="Full supermarket at Praça Alvalade 6. Wide variety, open daily." data-pt="Supermercado completo na Praça Alvalade 6. Grande variedade, aberto todos os dias." data-es="Supermercado completo en Praça Alvalade 6. Gran variedad, abierto todos los días." data-fr="Supermarché complet à Praça Alvalade 6. Grande variété, ouvert tous les jours.">Full supermarket at Praça Alvalade 6. Wide variety, open daily.</div>
+        <div class="place-meta" data-en="Daily 8:00–21:00" data-pt="Diário 8h–21h" data-es="Diario 8:00–21:00" data-fr="Quotidien 8h–21h">Daily 8:00–21:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJm9G0vKozGQ0R0oESAguqmTg" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Continente Bom Dia</div><div class="place-rating">⭐ 4.0 · 1.3k reviews</div></div>
+        <div class="place-desc" data-en="Rua Acácio de Paiva 22. Has a bakery and coffee area. Free parking for customers." data-pt="Rua Acácio de Paiva 22. Tem padaria e zona de café. Estacionamento grátis para clientes." data-es="Rua Acácio de Paiva 22. Tiene panadería y zona de café. Aparcamiento gratis para clientes." data-fr="Rua Acácio de Paiva 22. Boulangerie et espace café. Parking gratuit pour les clients.">Rua Acácio de Paiva 22. Has a bakery and coffee area. Free parking for customers.</div>
+        <div class="place-meta" data-en="Daily 8:00–21:00" data-pt="Diário 8h–21h" data-es="Diario 8:00–21:00" data-fr="Quotidien 8h–21h">Daily 8:00–21:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJ2cFjGFUyGQ0Rwsz5oB8lm7o" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Lidl</div><div class="place-rating">⭐ 4.0 · 1.7k reviews</div></div>
+        <div class="place-desc" data-en="Avenida Rio de Janeiro 26. Great value, next to the local market." data-pt="Avenida Rio de Janeiro 26. Ótima relação qualidade-preço, ao lado do mercado local." data-es="Avenida Rio de Janeiro 26. Excelente relación calidad-precio, junto al mercado local." data-fr="Avenida Rio de Janeiro 26. Excellent rapport qualité-prix, à côté du marché local.">Avenida Rio de Janeiro 26. Great value, next to the local market.</div>
+        <div class="place-meta" data-en="Daily 8:00–21:00" data-pt="Diário 8h–21h" data-es="Diario 8:00–21:00" data-fr="Quotidien 8h–21h">Daily 8:00–21:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJo8MjoVQyGQ0R_wBZXtZkSxg" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🚇</div>
+      <div class="section-title" data-en="Getting around" data-pt="Transportes" data-es="Cómo moverse" data-fr="Se déplacer">Getting around</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="service-item">
+        <div class="service-name" data-en="Metro — Alvalade (Green Line)" data-pt="Metro — Alvalade (Linha Verde)" data-es="Metro — Alvalade (Línea Verde)" data-fr="Métro — Alvalade (Ligne Verte)">Metro — Alvalade (Green Line)</div>
+        <div class="service-desc" data-en="~5 min walk. Connects to Marquês de Pombal, Rossio, airport and all main points." data-pt="~5 min a pé. Liga ao Marquês de Pombal, Rossio, aeroporto e todos os principais pontos." data-es="~5 min andando. Conecta con Marquês de Pombal, Rossio, aeropuerto y todos los puntos principales." data-fr="~5 min à pied. Connecte au Marquês de Pombal, Rossio, aéroport et tous les points principaux.">~5 min walk. Connects to Marquês de Pombal, Rossio, airport and all main points.</div>
+        <a href="https://goo.gl/maps/6ttacDpZ64XjFSd89" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name" data-en="Taxi / Rideshare" data-pt="Taxi / Rideshare" data-es="Taxi / VTC" data-fr="Taxi / VTC">Taxi / Rideshare</div>
+        <div class="service-desc" data-en="Uber, Bolt and Free Now are all highly recommended in Lisbon — much more reliable than taxis." data-pt="Uber, Bolt e Free Now são muito recomendados em Lisboa — muito mais fiáveis do que taxis." data-es="Uber, Bolt y Free Now son muy recomendados en Lisboa — mucho más fiables que los taxis." data-fr="Uber, Bolt et Free Now sont très recommandés à Lisbonne — bien plus fiables que les taxis.">Uber, Bolt and Free Now are all highly recommended in Lisbon — much more reliable than taxis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🅿️</div>
+      <div class="section-title" data-en="Parking" data-pt="Estacionamento" data-es="Aparcamiento" data-fr="Stationnement">Parking</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="notice" style="background:#fff1f1;border:1px solid #fecaca;border-radius:8px;padding:0.75rem 1rem;margin-bottom:12px;display:flex;gap:8px;">
+        <span>⚠️</span>
+        <p data-en="No parking on Rua Alberto Oliveira — residents only and police are very strict!" data-pt="Sem estacionamento na Rua Alberto Oliveira — só residentes e a polícia é implacável!" data-es="Sin aparcamiento en Rua Alberto Oliveira — solo residentes, ¡la policía es muy estricta!" data-fr="Pas de stationnement Rua Alberto Oliveira — résidents uniquement et la police est stricte !">No parking on Rua Alberto Oliveira — residents only and police are very strict!</p>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Avenida da Igreja — street parking (paid)" data-pt="Avenida da Igreja — estacionamento na rua (pago)" data-es="Avenida da Igreja — aparcamiento en calle (de pago)" data-fr="Avenida da Igreja — stationnement en rue (payant)">Avenida da Igreja — street parking (paid)</div>
+        <div class="place-desc" data-en="Paid parking Mon–Fri during the day. Free evenings and weekends! Check the meters for current rates." data-pt="Estacionamento pago Seg–Sex durante o dia. Gratuito à noite e fins de semana! Consulta os parquímetros para os valores actuais." data-es="Aparcamiento de pago Lun–Vie durante el día. ¡Gratuito por la noche y fines de semana! Consulta los parquímetros para las tarifas actuales." data-fr="Stationnement payant Lun–Ven en journée. Gratuit le soir et le week-end ! Consultez les horodateurs pour les tarifs actuels.">Paid parking Mon–Fri during the day. Free evenings and weekends! Check the meters for current rates.</div>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name" data-en="Estacionamento CC Alvalade (underground)" data-pt="Estacionamento CC Alvalade (subterrâneo)" data-es="Estacionamiento CC Alvalade (subterráneo)" data-fr="Parking CC Alvalade (souterrain)">Estacionamento CC Alvalade (underground)</div></div>
+        <div class="place-desc" data-en="Covered car park under the shopping centre. Via Verde accepted. Access to Pingo Doce." data-pt="Parque coberto sob o centro comercial. Via Verde aceite. Acesso ao Pingo Doce." data-es="Aparcamiento cubierto bajo el centro comercial. Via Verde aceptado. Acceso al Pingo Doce." data-fr="Parking couvert sous le centre commercial. Via Verde accepté. Accès au Pingo Doce.">Covered car park under the shopping centre. Via Verde accepted. Access to Pingo Doce.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJoS44CkwzGQ0ReRidfmtokGQ" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name" data-en="Parque Mercado de Alvalade" data-pt="Parque Mercado de Alvalade" data-es="Parque Mercado de Alvalade" data-fr="Parque Mercado de Alvalade">Parque Mercado de Alvalade</div></div>
+        <div class="place-desc" data-en="Near Lidl and the local market. Convenient for shopping." data-pt="Perto do Lidl e do mercado local. Conveniente para compras." data-es="Cerca del Lidl y del mercado local. Conveniente para las compras." data-fr="Près du Lidl et du marché local. Pratique pour faire les courses.">Near Lidl and the local market. Convenient for shopping.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJ6RFnQAAzGQ0RgqtW-hy-uNI" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Parque Alvalade XXI Telpark</div><div class="place-rating">⭐ open 24h</div></div>
+        <div class="place-desc" data-en="24h covered car park near the stadium. Good option for overnight parking." data-pt="Parque coberto 24h perto do estádio. Boa opção para estacionamento nocturno." data-es="Aparcamiento cubierto 24h cerca del estadio. Buena opción para estacionar de noche." data-fr="Parking couvert 24h près du stade. Bonne option pour le stationnement de nuit.">24h covered car park near the stadium. Good option for overnight parking.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJyar5yeUyGQ0RWQ7dvl1aGlo" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🏪</div>
+      <div class="section-title" data-en="Useful services nearby" data-pt="Serviços úteis perto" data-es="Servicios útiles cerca" data-fr="Services utiles à proximité">Useful services nearby</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Pharmacy" data-pt="Farmácia" data-es="Farmacia" data-fr="Pharmacie">Pharmacy</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Sanex</div><div class="place-rating">⭐ 4.3</div></div>
+        <div class="place-desc" data-en="Pleasant pharmacy on Avenida da Igreja. Open daily including Sundays." data-pt="Farmácia agradável na Avenida da Igreja. Aberta todos os dias incluindo domingos." data-es="Farmacia agradable en Avenida da Igreja. Abierta todos los días incluido domingos." data-fr="Pharmacie agréable sur l'Avenida da Igreja. Ouverte tous les jours y compris dimanches.">Pleasant pharmacy on Avenida da Igreja. Open daily including Sundays.</div>
+        <div class="place-meta" data-en="Mon–Sat 9:00–21:00 · Sun 9:00–20:00" data-pt="Seg–Sáb 9h–21h · Dom 9h–20h" data-es="Lun–Sáb 9:00–21:00 · Dom 9:00–20:00" data-fr="Lun–Sam 9h–21h · Dim 9h–20h">Mon–Sat 9:00–21:00 · Sun 9:00–20:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJn-3H36ozGQ0RflQYmuehuYA" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Barber" data-pt="Barbearia" data-es="Barbería" data-fr="Barbier">Barber</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Lisbon'Style Barbershop</div><div class="place-rating">⭐ 4.6 · 192 reviews</div></div>
+        <div class="place-desc" data-en="Excellent barbers, friendly staff. Walk-ins welcome. Open daily including Sundays." data-pt="Barbeiros excelentes, equipa simpática. Walk-ins bem-vindos. Aberto todos os dias." data-es="Excelentes barberos, personal amable. Se admiten walk-ins. Abierto todos los días." data-fr="Excellents barbiers, personnel sympathique. Walk-ins acceptés. Ouvert tous les jours.">Excellent barbers, friendly staff. Walk-ins welcome. Open daily including Sundays.</div>
+        <div class="place-meta" data-en="Daily 10:00–22:00" data-pt="Diário 10h–22h" data-es="Diario 10:00–22:00" data-fr="Quotidien 10h–22h">Daily 10:00–22:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJuSIo0FMyGQ0RcoUnr0tzuOs" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Laundry" data-pt="Lavandaria" data-es="Lavandería" data-fr="Laverie">Laundry</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Alvawash</div><div class="place-rating">⭐ 4.6 · 52 reviews</div></div>
+        <div class="place-desc" data-en="Clean, well-equipped self-service laundry. Detergent included. Daily 7:00–23:00." data-pt="Lavandaria self-service limpa e bem equipada. Detergente incluído. Diário 7h–23h." data-es="Lavandería self-service limpia y bien equipada. Detergente incluido. Diario 7:00–23:00." data-fr="Laverie self-service propre et bien équipée. Lessive incluse. Quotidien 7h–23h.">Clean, well-equipped self-service laundry. Detergent included. Daily 7:00–23:00.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJOV3P9EozGQ0RiE3TeIQiJBk" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="ATM / Cash" data-pt="Multibanco" data-es="Cajero" data-fr="Distributeur">ATM / Cash</p>
+      <div class="place">
+        <div class="place-name" data-en="Multibanco — Avenida da Igreja" data-pt="Multibanco — Avenida da Igreja" data-es="Cajero — Avenida da Igreja" data-fr="Distributeur — Avenida da Igreja">Multibanco — Avenida da Igreja</div>
+        <div class="place-desc" data-en="Use Multibanco (MB) machines — avoid Euronet (high fees)." data-pt="Usa máquinas Multibanco (MB) — evita Euronet (taxas altas)." data-es="Usa cajeros Multibanco (MB) — evita Euronet (comisiones altas)." data-fr="Utilisez les distributeurs Multibanco (MB) — évitez Euronet (frais élevés).">Use Multibanco (MB) machines — avoid Euronet (high fees).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🧳</div>
+      <div class="section-title" data-en="Luggage storage" data-pt="Guarda-bagagem" data-es="Consigna de equipaje" data-fr="Consigne à bagages">Luggage storage</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="service-item">
+        <div class="service-name">Bounce</div>
+        <div class="service-desc" data-en="Storage locations nearby from €1/day. 5% discount with our link." data-pt="Locais perto a partir de €1/dia. 5% desconto." data-es="Locales cercanos desde €1/día. 5% descuento." data-fr="Lieux à proximité à partir de 1€/jour. 5% de réduction.">Storage locations nearby from €1/day. 5% discount with our link.</div>
+        <a href="https://go.bounce.com/PORTOHAVEN7471817336" target="_blank" class="map-link">🔗 <span data-en="Book with discount" data-pt="Reservar com desconto" data-es="Reservar con descuento" data-fr="Réserver avec réduction">Book with discount</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name">LUGGit</div>
+        <div class="service-desc" data-en="Collects and delivers your bags wherever and whenever. 10% discount." data-pt="Recolhe e entrega onde quiseres. 10% desconto." data-es="Recoge y entrega donde quieras. 10% descuento." data-fr="Récupère et livre vos bagages. 10% de réduction.">Collects and delivers your bags wherever and whenever. 10% discount.</div>
+        <a href="https://luggit.app/partner/porto-haven" target="_blank" class="map-link">🔗 <span data-en="Book with discount" data-pt="Reservar com desconto" data-es="Reservar con descuento" data-fr="Réserver avec réduction">Book with discount</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title" data-en="Things to do in Lisbon" data-pt="O que visitar em Lisboa" data-es="Qué hacer en Lisboa" data-fr="À faire à Lisbonne">Things to do in Lisbon</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-name" data-en="Parque Eduardo VII & Avenida da Liberdade" data-pt="Parque Eduardo VII & Avenida da Liberdade" data-es="Parque Eduardo VII & Avenida da Liberdade" data-fr="Parque Eduardo VII & Avenida da Liberdade">Parque Eduardo VII & Avenida da Liberdade</div>
+        <div class="place-desc" data-en="Beautiful park with panoramic views of Lisbon, leading to the grand Avenida da Liberdade." data-pt="Parque bonito com vistas panorâmicas de Lisboa, levando à grande Avenida da Liberdade." data-es="Hermoso parque con vistas panorámicas de Lisboa, que lleva a la gran Avenida da Liberdade." data-fr="Beau parc avec des vues panoramiques sur Lisbonne, menant à la grande Avenida da Liberdade.">Beautiful park with panoramic views of Lisbon, leading to the grand Avenida da Liberdade.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Alfama & São Jorge Castle" data-pt="Alfama & Castelo de São Jorge" data-es="Alfama & Castillo de San Jorge" data-fr="Alfama & Château Saint-Georges">Alfama & São Jorge Castle</div>
+        <div class="place-desc" data-en="Lisbon's oldest and most atmospheric neighbourhood. Fado music, winding streets and stunning views." data-pt="O bairro mais antigo e atmosférico de Lisboa. Fado, ruelas e vistas deslumbrantes." data-es="El barrio más antiguo y atmosférico de Lisboa. Fado, calles sinuosas y vistas impresionantes." data-fr="Le quartier le plus ancien et le plus atmosphérique de Lisbonne. Fado, ruelles sinueuses et vues époustouflantes.">Lisbon's oldest and most atmospheric neighbourhood. Fado music, winding streets and stunning views.</div>
+      </div>
+      <div class="place">
+        <div class="place-name">Belém</div>
+        <div class="place-desc" data-en="Torre de Belém, Mosteiro dos Jerónimos and the original Pastéis de Belém. Essential Lisbon." data-pt="Torre de Belém, Mosteiro dos Jerónimos e os Pastéis de Belém originais. Lisboa essencial." data-es="Torre de Belém, Mosteiro dos Jerónimos y los Pastéis de Belém originales. Lisboa esencial." data-fr="Torre de Belém, Mosteiro dos Jerónimos et les Pastéis de Belém originaux. Lisbonne essentielle.">Torre de Belém, Mosteiro dos Jerónimos and the original Pastéis de Belém. Essential Lisbon.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="LX Factory" data-pt="LX Factory" data-es="LX Factory" data-fr="LX Factory">LX Factory</div>
+        <div class="place-desc" data-en="Trendy market and creative hub in a former industrial complex. Especially great on Sundays." data-pt="Mercado trendy e hub criativo num complexo industrial. Especialmente ótimo aos domingos." data-es="Mercado moderno y hub creativo en un antiguo complejo industrial. Especialmente genial los domingos." data-fr="Marché tendance et hub créatif dans un ancien complexe industriel. Particulièrement bien le dimanche.">Trendy market and creative hub in a former industrial complex. Especially great on Sundays.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Mouraria & Graça" data-pt="Mouraria & Graça" data-es="Mouraria & Graça" data-fr="Mouraria & Graça">Mouraria & Graça</div>
+        <div class="place-desc" data-en="Authentic neighbourhoods with incredible miradouros (viewpoints), local restaurants and a genuine Lisbon feel." data-pt="Bairros autênticos com miradouros incríveis, restaurantes locais e o espírito genuíno de Lisboa." data-es="Barrios auténticos con miradores increíbles, restaurantes locales y ambiente genuinamente lisboeta." data-fr="Quartiers authentiques avec des miradouros incroyables, des restaurants locaux et une atmosphère genuinement lisbonaise.">Authentic neighbourhoods with incredible miradouros (viewpoints), local restaurants and a genuine Lisbon feel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">📋</div>
+      <div class="section-title" data-en="House rules" data-pt="Regras da casa" data-es="Normas de la casa" data-fr="Règles de la maison">House rules</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="rule"><div class="rule-icon">🚭</div><span data-en="No smoking" data-pt="Proibido fumar" data-es="Prohibido fumar" data-fr="Défense de fumer">No smoking</span></div>
+      <div class="rule"><div class="rule-icon">🎉</div><span data-en="No parties or events" data-pt="Sem festas ou eventos" data-es="Sin fiestas ni eventos" data-fr="Pas de fêtes ni d'événements">No parties or events</span></div>
+      <div class="rule"><div class="rule-icon">🐾</div><span data-en="No pets" data-pt="Sem animais" data-es="No se admiten mascotas" data-fr="Animaux interdits">No pets</span></div>
+      <div class="rule"><div class="rule-icon">🚫</div><span data-en="No external visitors" data-pt="Sem visitas externas" data-es="Sin visitas externas" data-fr="Pas de visiteurs extérieurs">No external visitors</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🆘</div>
+      <div class="section-title" data-en="Emergency contacts" data-pt="Contactos de emergência" data-es="Contactos de emergencia" data-fr="Contacts d'urgence">Emergency contacts</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="emergency-box">
+        <div class="emergency-title" data-en="Emergency numbers" data-pt="Números de emergência" data-es="Números de emergencia" data-fr="Numéros d'urgence">Emergency numbers</div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Emergency (EU)" data-pt="Emergência" data-es="Emergencias" data-fr="Urgences">Emergency (EU)</span><span class="emergency-num">112</span></div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Police (PSP)" data-pt="Polícia" data-es="Policía" data-fr="Police">Police (PSP)</span><span class="emergency-num">217 654 242</span></div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Hospital Santa Maria" data-pt="Hospital Santa Maria" data-es="Hospital Santa Maria" data-fr="Hôpital Santa Maria">Hospital Santa Maria</span><span class="emergency-num">217 805 000</span></div>
+      </div>
+      <p class="tip" style="margin-top:0.75rem" data-en="For any issue with the apartment, please message us through your booking platform and we'll get back to you as soon as possible." data-pt="Para qualquer problema, envia-nos uma mensagem pela plataforma de reserva." data-es="Para cualquier problema, envíanos un mensaje a través de tu plataforma de reserva." data-fr="Pour tout problème, envoyez-nous un message via votre plateforme de réservation.">For any issue with the apartment, please message us through your booking platform and we'll get back to you as soon as possible.</p>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <p data-en="Lisbon Haven · Alvalade · We hope you have a wonderful stay!" data-pt="Lisbon Haven · Alvalade · Esperamos que tenhas uma estadia maravilhosa!" data-es="Lisbon Haven · Alvalade · ¡Esperamos que tengas una estancia maravillosa!" data-fr="Lisbon Haven · Alvalade · Nous vous souhaitons un merveilleux séjour !">Lisbon Haven · Alvalade · We hope you have a wonderful stay!</p>
+</div>
+<script>
+function toggle(h){const b=h.nextElementSibling;const o=b.classList.contains('open');b.classList.toggle('open',!o);h.classList.toggle('open',!o)}
+function setLang(l){document.querySelectorAll('[data-en]').forEach(e=>{e.textContent=e.getAttribute('data-'+l)||e.getAttribute('data-en')});const m={'en':'English','pt':'Português','es':'Español','fr':'Français'};document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent===m[l])})}
+</script>
+</body>
+</html>
