@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codeçal 1º — Guest Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f7f5f0;color:#1a1a1a}
+.hero{background:#1a1a1a;color:#fff;padding:2rem 1.25rem 1.5rem}
+.hero-tag{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:6px}
+.hero-title{font-size:26px;font-weight:600;margin-bottom:4px}
+.hero-sub{font-size:14px;color:#aaa;margin-bottom:1.25rem}
+.lang-toggle{display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:6px 16px;border-radius:20px;border:1px solid #444;background:transparent;color:#aaa;font-size:13px;cursor:pointer;transition:all 0.2s}
+.lang-btn.active{background:#fff;color:#1a1a1a;border-color:#fff}
+.hero-map{display:inline-flex;align-items:center;gap:6px;margin-top:1rem;color:#ccc;font-size:13px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px}
+.container{max-width:600px;margin:0 auto;padding:1rem}
+.section{background:#fff;border-radius:12px;margin-bottom:0.75rem;overflow:hidden;border:1px solid #ece9e3}
+.section-header{display:flex;align-items:center;gap:10px;padding:1rem 1.25rem;cursor:pointer;user-select:none}
+.section-icon{width:32px;height:32px;border-radius:8px;background:#f0ede8;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.section-title{font-size:15px;font-weight:600;flex:1;color:#1a1a1a}
+.section-chevron{font-size:18px;color:#999;transition:transform 0.25s}
+.section-body{padding:0 1.25rem 1.25rem;display:none}
+.section-body.open{display:block}
+.section-header.open .section-chevron{transform:rotate(180deg)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.75rem}
+.info-card{background:#f7f5f0;border-radius:8px;padding:0.75rem}
+.info-card-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+.info-card-value{font-size:15px;font-weight:600;color:#1a1a1a}
+.wifi-box{background:#1a1a1a;color:#fff;border-radius:10px;padding:1rem 1.25rem;margin-bottom:8px}
+.wifi-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+.wifi-value{font-size:16px;font-weight:600;font-family:monospace;letter-spacing:0.05em}
+.place{padding:10px 0;border-bottom:1px solid #f0ede8}
+.place:last-child{border-bottom:none}
+.place-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:3px}
+.place-name{font-size:14px;font-weight:600;color:#1a1a1a}
+.place-rating{font-size:12px;color:#f59e0b;font-weight:600;white-space:nowrap}
+.place-desc{font-size:12px;color:#666;line-height:1.4;margin-bottom:5px}
+.place-meta{font-size:11px;color:#999;margin-bottom:5px}
+.map-link{font-size:12px;color:#2563eb;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;margin-left:5px;font-weight:500}
+.badge-reserve{background:#ede9fe;color:#5b21b6}
+.rule{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f0ede8;font-size:14px}
+.rule:last-child{border-bottom:none}
+.rule-icon{font-size:16px;width:24px;text-align:center}
+.tip{font-size:13px;color:#555;line-height:1.5;padding:8px 0}
+.service-item{padding:10px 0;border-bottom:1px solid #f0ede8}
+.service-item:last-child{border-bottom:none}
+.service-name{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.service-desc{font-size:12px;color:#666;margin-bottom:5px}
+.divider{height:1px;background:#f0ede8;margin:10px 0}
+.footer{text-align:center;padding:2rem 1rem;color:#999;font-size:12px}
+.emergency-box{background:#fff1f1;border:1px solid #fecaca;border-radius:10px;padding:1rem 1.25rem}
+.emergency-title{font-size:13px;font-weight:600;color:#991b1b;margin-bottom:8px}
+.emergency-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid #fecaca}
+.emergency-row:last-child{border-bottom:none}
+.emergency-label{color:#666}
+.emergency-num{font-weight:600;color:#1a1a1a}
+.notice{background:#fff8e6;border:1px solid #f0d080;border-radius:8px;padding:0.75rem 1rem;margin-top:0.75rem;display:flex;gap:8px;align-items:flex-start}
+.notice span{font-size:16px;flex-shrink:0}
+.notice p{font-size:13px;color:#7a5c00;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-tag">Porto Haven</div>
+  <div class="hero-title">Under the Luís I Bridge</div>
+  <div class="hero-sub" data-en="Escadas de Codeçal, 98 · 1st floor · Porto" data-pt="Escadas de Codeçal, 98 · 1º andar · Porto" data-es="Escadas de Codeçal, 98 · 1er piso · Oporto" data-fr="Escadas de Codeçal, 98 · 1er étage · Porto">Escadas de Codeçal, 98 · 1st floor · Porto</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('pt')">Português</button>
+    <button class="lang-btn" onclick="setLang('es')">Español</button>
+    <button class="lang-btn" onclick="setLang('fr')">Français</button>
+  </div>
+  <a href="https://maps.app.goo.gl/1vJmjJTznV7LiZNfA" target="_blank" class="hero-map">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+</div>
+<div class="container">
+
+  <div class="section">
+    <div class="section-header open" onclick="toggle(this)">
+      <div class="section-icon">🔑</div>
+      <div class="section-title" data-en="Check-in & check-out" data-pt="Check-in & check-out" data-es="Check-in & check-out" data-fr="Check-in & check-out">Check-in & check-out</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body open">
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label" data-en="Check-in" data-pt="Check-in" data-es="Check-in" data-fr="Check-in">Check-in</div><div class="info-card-value">16:00 – 00:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Check-out" data-pt="Check-out" data-es="Check-out" data-fr="Check-out">Check-out</div><div class="info-card-value" data-en="by 11:00" data-pt="até às 11:00" data-es="antes de las 11:00" data-fr="avant 11h00">by 11:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Drop bags (arrival)" data-pt="Deixar malas (chegada)" data-es="Dejar maletas (llegada)" data-fr="Déposer bagages (arrivée)">Drop bags (arrival)</div><div class="info-card-value" data-en="from 12:00" data-pt="a partir das 12:00" data-es="desde las 12:00" data-fr="à partir de 12h00">from 12:00</div></div>
+        <div class="info-card"><div class="info-card-label" data-en="Drop bags (departure)" data-pt="Deixar malas (saída)" data-es="Dejar maletas (salida)" data-fr="Déposer bagages (départ)">Drop bags (departure)</div><div class="info-card-value" data-en="until 13:00" data-pt="até às 13:00" data-es="hasta las 13:00" data-fr="jusqu'à 13h00">until 13:00</div></div>
+      </div>
+      <p class="tip" data-en="Self check-in. Your access code is sent 48 hours before arrival. No lift — stairs only." data-pt="Self check-in. Código de acesso enviado 48h antes. Sem elevador — apenas escadas." data-es="Self check-in. Código enviado 48h antes. Sin ascensor — solo escaleras." data-fr="Self check-in. Code envoyé 48h avant. Pas d'ascenseur — escaliers uniquement.">Self check-in. Your access code is sent 48 hours before arrival. No lift — stairs only.</p>
+      <p class="tip" data-en="The best way to arrive is by Uber or taxi, then walk 90 metres to the apartment." data-pt="A melhor forma de chegar é de Uber ou táxi e depois andar 90 metros até ao apartamento." data-es="La mejor forma de llegar es en Uber o taxi y luego caminar 90 metros hasta el apartamento." data-fr="La meilleure façon d'arriver est en Uber ou taxi, puis marcher 90 mètres jusqu'à l'appartement.">The best way to arrive is by Uber or taxi, then walk 90 metres to the apartment.</p>
+      <a href="https://maps.app.goo.gl/1vJmjJTznV7LiZNfA" target="_blank" class="map-link" style="margin-bottom:8px;display:inline-flex">📍 <span data-en="See the 90m walk" data-pt="Ver o percurso de 90m" data-es="Ver el recorrido de 90m" data-fr="Voir le parcours de 90m">See the 90m walk</span></a>
+      
+      <p class="tip" data-en="Unfortunately we cannot offer an early check-in or late check-out as we are normally fully booked, but you can drop your bags inside the apartment from 12:00 on arrival day, or leave your bags in the apartment at check-out until 13:00 maximum." data-pt="Infelizmente não conseguimos garantir early check-in ou late check-out, mas podes deixar as malas a partir das 12:00 no dia de chegada, ou até às 13:00 no dia de saída." data-es="Lamentablemente no podemos ofrecer early check-in ni late check-out, pero puedes dejar las maletas desde las 12:00 el día de llegada o hasta las 13:00 el día de salida." data-fr="Malheureusement, pas de check-in anticipé ni check-out tardif, mais vous pouvez déposer vos bagages à partir de 12h00 le jour d'arrivée ou jusqu'à 13h00 le jour du départ.">Unfortunately we cannot offer an early check-in or late check-out as we are normally fully booked, but you can drop your bags inside the apartment from 12:00 on arrival day, or leave your bags in the apartment at check-out until 13:00 maximum.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">📶</div>
+      <div class="section-title">Wi-Fi</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="wifi-box"><div class="wifi-label" data-en="Network" data-pt="Rede" data-es="Red" data-fr="Réseau">Network</div><div class="wifi-value">portohavencodecal1</div></div>
+      <div class="wifi-box"><div class="wifi-label">Password</div><div class="wifi-value">@codecal1</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title" data-en="Restaurants & cafés" data-pt="Restaurantes & cafés" data-es="Restaurantes & cafés" data-fr="Restaurants & cafés">Restaurants & cafés</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-header"><div class="place-name">Ribeira Square</div><div class="place-rating">⭐ 4.7 · 3.2k reviews</div></div>
+        <div class="place-desc" data-en="Steps from your door. Excellent atmosphere, outstanding seafood rice and black pasta. One of Porto's best." data-pt="A passos da tua porta. Ambiente excelente, arroz de marisco e massa negra extraordinários. Um dos melhores do Porto." data-es="A pasos de tu puerta. Excelente ambiente, arroz de marisco y pasta negra excepcionales. Uno de los mejores de Oporto." data-fr="À quelques pas de votre porte. Excellente ambiance, riz aux fruits de mer et pâtes noires exceptionnels.">Steps from your door. Excellent atmosphere, outstanding seafood rice and black pasta. One of Porto's best.</div>
+        <div class="place-meta" data-en="Mon & Thu–Sun 18:00–23:00 (closed Tue–Wed)" data-pt="Seg e Qui–Dom 18h–23h (fechado Ter–Qua)" data-es="Lun y Jue–Dom 18:00–23:00 (cerrado Mar–Mié)" data-fr="Lun et Jeu–Dim 18h–23h (fermé Mar–Mer)">Mon & Thu–Sun 18:00–23:00 (closed Tue–Wed)</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJL-WA9-BkJA0RtIH0b74DFCU" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Terra Nova</div><div class="place-rating">⭐ 4.4 · 2.5k reviews</div></div>
+        <div class="place-desc" data-en="On the Cais da Ribeira waterfront. Great octopus risotto, stunning sunset views. Daily." data-pt="No Cais da Ribeira. Ótimo risotto de polvo, vistas deslumbrantes ao pôr do sol. Aberto todos os dias." data-es="En el Cais da Ribeira. Excelente risotto de pulpo, vistas al atardecer. Abierto todos los días." data-fr="Sur le Cais da Ribeira. Excellent risotto de poulpe, vues magnifiques au coucher du soleil.">On the Cais da Ribeira waterfront. Great octopus risotto, stunning sunset views. Daily.</div>
+        <div class="place-meta" data-en="Daily 12:00–22:30" data-pt="Diário 12h–22h30" data-es="Diario 12:00–22:30" data-fr="Quotidien 12h–22h30">Daily 12:00–22:30</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJRX-CyOBkJA0Rpb0Vy3djd1A" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Escama — Sea Cuisine</div><div class="place-rating">⭐ 4.3 · creative</div></div>
+        <div class="place-desc" data-en="Creative seafood right on the waterfront. Reservation recommended." data-pt="Marisco criativo mesmo junto à água. Reserva recomendada." data-es="Marisco creativo junto al agua. Reserva recomendada." data-fr="Fruits de mer créatifs en bord de rivière. Réservation recommandée.">Creative seafood right on the waterfront. Reservation recommended.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJobMWnF1lJA0R_1YCTJw6jiY" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Cafés" data-pt="Cafés" data-es="Cafés" data-fr="Cafés">Cafés</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">My Coffee Porto</div><div class="place-rating">⭐ 4.6 · 1.8k reviews</div></div>
+        <div class="place-desc" data-en="Right on your doorstep! Incredible views of the Douro and the bridge, excellent coffee and açaí bowls." data-pt="Mesmo à tua porta! Vistas incríveis do Douro e da Ponte, café excelente e açaí." data-es="¡Justo a tu puerta! Vistas increíbles del Duero y del puente, café excelente y açaí." data-fr="Juste à votre porte ! Vues incroyables sur le Douro et le pont, excellent café et açaí.">Right on your doorstep! Incredible views of the Douro and the bridge, excellent coffee and açaí bowls.</div>
+        <div class="place-meta" data-en="Daily 9:00–18:00" data-pt="Diário 9h–18h" data-es="Diario 9:00–18:00" data-fr="Quotidien 9h–18h">Daily 9:00–18:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJRcYRxh9lJA0RHW7fROA6ay0" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">My Ribeira Café</div><div class="place-rating">⭐ 4.3 · cosy</div></div>
+        <div class="place-desc" data-en="Cosy riverside café with excellent flat whites and homemade muffins. A real gem." data-pt="Café acolhedor à beira-rio com flat whites excelentes e muffins caseiros. Uma joia." data-es="Café acogedor junto al río con flat whites excelentes y muffins caseros. Una joya." data-fr="Café douillet au bord de la rivière avec d'excellents flat whites et muffins maison.">Cosy riverside café with excellent flat whites and homemade muffins. A real gem.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJi3kAqRdlJA0REmD95ghIcs0" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🛒</div>
+      <div class="section-title" data-en="Supermarkets" data-pt="Supermercados" data-es="Supermercados" data-fr="Supermarchés">Supermarkets</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-name">SPAR — Rua de São João</div>
+        <div class="place-desc" data-en="Closest supermarket, ~5 min walk along the waterfront. Daily 9:00–21:00." data-pt="Supermercado mais próximo, ~5 min a pé ao longo da margem do rio. Diário 9h–21h." data-es="Supermercado más cercano, ~5 min andando por el paseo marítimo. Diario 9:00–21:00." data-fr="Supermarché le plus proche, ~5 min à pied le long du front de rivière. Quotidien 9h–21h.">Closest supermarket, ~5 min walk along the waterfront. Daily 9:00–21:00.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJoepOVeBkJA0RGRTQGA63_yM" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Nearest supermarkets" data-pt="Supermercados mais próximos" data-es="Supermercados más cercanos" data-fr="Supermarchés les plus proches">Nearest supermarkets</div>
+        <a href="https://maps.app.goo.gl/wwbKoqfoTQZ7JXgMA" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🚇</div>
+      <div class="section-title" data-en="Getting around" data-pt="Transportes" data-es="Cómo moverse" data-fr="Se déplacer">Getting around</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="service-item">
+        <div class="service-name" data-en="Metro — São Bento (~8 min walk)" data-pt="Metro — São Bento (~8 min a pé)" data-es="Metro — São Bento (~8 min andando)" data-fr="Métro — São Bento (~8 min à pied)">Metro — São Bento (~8 min walk)</div>
+        <div class="service-desc" data-en="Connects to Trindade, airport and all main points in the city." data-pt="Liga ao Trindade, aeroporto e todos os principais pontos da cidade." data-es="Conecta con Trindade, aeropuerto y todos los puntos principales." data-fr="Connecte au Trindade, l'aéroport et tous les points principaux.">Connects to Trindade, airport and all main points in the city.</div>
+        <a href="https://maps.app.goo.gl/BUEoSEHDnDUXDPft8" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name" data-en="Bus — Largo 1º de Dezembro" data-pt="Autocarro — Largo 1º de Dezembro" data-es="Autobús — Largo 1º de Dezembro" data-fr="Bus — Largo 1º de Dezembro">Bus — Largo 1º de Dezembro</div>
+        <div class="service-desc" data-en="Lines 207 and 303. At Elevador dos Guindais: line 403." data-pt="Linhas 207 e 303. No Elevador dos Guindais: linha 403." data-es="Líneas 207 y 303. En el Elevador dos Guindais: línea 403." data-fr="Lignes 207 et 303. À l'Elevador dos Guindais : ligne 403.">Lines 207 and 303. At Elevador dos Guindais: line 403.</div>
+        <a href="https://maps.app.goo.gl/UvBBQQz4dZPRTzko7" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name" data-en="Historic Tram — Line 1 🚋" data-pt="Eléctrico histórico — Linha 1 🚋" data-es="Tranvía histórico — Línea 1 🚋" data-fr="Tramway historique — Ligne 1 🚋">Historic Tram — Line 1 🚋</div>
+        <div class="service-desc" data-en="The closest tram stop is just minutes away. Line 1 offers the best views of Porto's riverfront — a unique experience!" data-pt="A paragem mais próxima fica a poucos minutos. A Linha 1 oferece as melhores vistas do rio — uma experiência única!" data-es="La parada más cercana está a pocos minutos. ¡La Línea 1 ofrece las mejores vistas del río — una experiencia única!" data-fr="L'arrêt le plus proche est à quelques minutes. La Ligne 1 offre les meilleures vues sur le front de rivière — une expérience unique !">The closest tram stop is just minutes away. Line 1 offers the best views of Porto's riverfront — a unique experience!</div>
+        <a href="https://g.co/kgs/kzmcYVj" target="_blank" class="map-link">📍 <span data-en="Tram stop" data-pt="Paragem de eléctrico" data-es="Parada de tranvía" data-fr="Arrêt de tramway">Tram stop</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name" data-en="Taxi / Rideshare" data-pt="Taxi / Rideshare" data-es="Taxi / VTC" data-fr="Taxi / VTC">Taxi / Rideshare</div>
+        <div class="service-desc" data-en="Uber, Bolt and Free Now all work well. For taxis, ask your host." data-pt="Uber, Bolt e Free Now funcionam muito bem. Para taxis, contacta o anfitrião." data-es="Uber, Bolt y Free Now funcionan muy bien. Para taxis, contacta al anfitrión." data-fr="Uber, Bolt et Free Now fonctionnent très bien. Pour les taxis, contactez votre hôte.">Uber, Bolt and Free Now all work well. For taxis, ask your host.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-name" data-en="Airport transfer" data-pt="Transfer aeroporto" data-es="Traslado aeropuerto" data-fr="Transfert aéroport">Airport transfer</div>
+        <a href="https://bnb.welcomepickups.com/property_groups/311/properties/4635" target="_blank" class="map-link">🚗 <span data-en="Book transfer" data-pt="Reservar transfer" data-es="Reservar traslado" data-fr="Réserver transfert">Book transfer</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🅿️</div>
+      <div class="section-title" data-en="Parking" data-pt="Estacionamento" data-es="Aparcamiento" data-fr="Stationnement">Parking</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-header"><div class="place-name">Estacionamento Duque de Loulé</div><div class="place-rating">⭐ 3.7 · 170 · 24h</div></div>
+        <div class="place-desc" data-en="Open 24h, ~5 min walk. Pre-paid 72h ticket (€20) is the best value — buy at the staff hut right after entering. ⚠️ Do not leave valuables visible in the car." data-pt="Aberto 24h, ~5 min a pé. O bilhete pré-pago de 72h (€20) é o melhor negócio — compra na cabine à entrada. ⚠️ Não deixes objetos de valor visíveis no carro." data-es="Abierto 24h, ~5 min andando. El ticket prepago de 72h (€20) es el mejor precio — compra en la cabina al entrar. ⚠️ No dejes objetos de valor visibles en el coche." data-fr="Ouvert 24h, ~5 min à pied. Le ticket prépayé 72h (20€) est le meilleur tarif — achetez-le à la cabine à l'entrée. ⚠️ Ne laissez pas d'objets de valeur visibles dans la voiture.">Open 24h, ~5 min walk. Pre-paid 72h ticket (€20) is the best value — buy at the staff hut right after entering. ⚠️ Do not leave valuables visible in the car.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJqeBtS-ZkJA0R30gr8zFjfUU" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Cardosas Parking</div><div class="place-rating">⭐ 3.8 · 452 · 24h · safer</div></div>
+        <div class="place-desc" data-en="Safer covered garage, ~10 min walk. Open 24h. Well lit, good size spaces. ~€27/day." data-pt="Garagem coberta mais segura, ~10 min a pé. Aberta 24h. Bem iluminada, lugares espaçosos. ~€27/dia." data-es="Garaje cubierto más seguro, ~10 min a pie. Abierto 24h. Bien iluminado, plazas amplias. ~€27/día." data-fr="Garage couvert plus sûr, ~10 min à pied. Ouvert 24h. Bien éclairé, grandes places. ~€27/jour.">Safer covered garage, ~10 min walk. Open 24h. Well lit, good size spaces. ~€27/day.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJg96J6eNkJA0R-Qg_ClpQ4hQ" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Street parking — Largo 1º de Dezembro / Largo Actor Dias" data-pt="Estacionamento na rua — Largo 1º de Dezembro / Largo Actor Dias" data-es="Aparcamiento en calle" data-fr="Stationnement en rue">Street parking — Largo 1º de Dezembro / Largo Actor Dias</div>
+        <div class="place-desc" data-en="Free spots when available — pay at the meter." data-pt="Lugares gratuitos quando disponíveis — paga no parquímetro." data-es="Plazas gratuitas cuando disponibles — paga en el parquímetro." data-fr="Places gratuites si disponibles — payez à l'horodateur.">Free spots when available — pay at the meter.</div>
+        <a href="https://maps.app.goo.gl/UvBBQQz4dZPRTzko7" target="_blank" class="map-link">📍 <span data-en="Largo 1º de Dezembro" data-pt="Largo 1º de Dezembro" data-es="Largo 1º de Dezembro" data-fr="Largo 1º de Dezembro">Largo 1º de Dezembro</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🏪</div>
+      <div class="section-title" data-en="Useful services nearby" data-pt="Serviços úteis perto" data-es="Servicios útiles cerca" data-fr="Services utiles à proximité">Useful services nearby</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Pharmacy" data-pt="Farmácia" data-es="Farmacia" data-fr="Pharmacie">Pharmacy</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Farmácia Moreno</div><div class="place-rating">⭐ 4.5 · 190 reviews</div></div>
+        <div class="place-desc" data-en="Friendly and knowledgeable staff, open daily including Sundays. COVID testing available." data-pt="Equipa simpática e conhecedora, aberta todos os dias incluindo domingos. Testes COVID disponíveis." data-es="Personal amable y experto, abierto todos los días. Pruebas COVID disponibles." data-fr="Personnel sympathique et compétent, ouvert tous les jours. Tests COVID disponibles.">Friendly and knowledgeable staff, open daily including Sundays. COVID testing available.</div>
+        <div class="place-meta" data-en="Daily 9:00–21:00" data-pt="Diário 9h–21h" data-es="Diario 9:00–21:00" data-fr="Quotidien 9h–21h">Daily 9:00–21:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJHWs_6-FkJA0RTfA_KqLug2o" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Barber" data-pt="Barbearia" data-es="Barbería" data-fr="Barbier">Barber</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Magnata Barbershop</div><div class="place-rating">⭐ 4.7 · 394 reviews</div></div>
+        <div class="place-desc" data-en="Brilliant barbershop near São Bento. Skilled barbers, great atmosphere, highly recommended." data-pt="Barbearia excelente perto de São Bento. Barbeiros habilidosos, ótima atmosfera." data-es="Barbería brillante cerca de São Bento. Barberos habilidosos, gran ambiente." data-fr="Excellente barbière près de São Bento. Barbiers talentueux, super ambiance.">Brilliant barbershop near São Bento. Skilled barbers, great atmosphere, highly recommended.</div>
+        <div class="place-meta" data-en="Mon 10:00–18:00 · Tue–Fri 10:00–19:30 · Sat 10:00–18:00" data-pt="Seg 10h–18h · Ter–Sex 10h–19h30 · Sáb 10h–18h" data-es="Lun 10:00–18:00 · Mar–Vie 10:00–19:30 · Sáb 10:00–18:00" data-fr="Lun 10h–18h · Mar–Ven 10h–19h30 · Sam 10h–18h">Mon 10:00–18:00 · Tue–Fri 10:00–19:30 · Sat 10:00–18:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJrfAtYuFkJA0Rsw4BTsqSNx4" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Barbearia Gusto Cordoaria</div><div class="place-rating">⭐ 4.9 · 334 reviews</div></div>
+        <div class="place-desc" data-en="The best barber in Porto according to many reviews. Classic style, excellent service, haircut from €8–9." data-pt="O melhor barbeiro do Porto segundo muitas avaliações. Estilo clássico, serviço excelente, corte a partir de €8–9." data-es="El mejor barbero de Oporto según muchas reseñas. Estilo clásico, excelente servicio, corte desde €8–9." data-fr="Le meilleur barbier de Porto selon de nombreux avis. Style classique, excellent service, coupe à partir de 8–9€.">The best barber in Porto according to many reviews. Classic style, excellent service, haircut from €8–9.</div>
+        <div class="place-meta" data-en="Mon 9:00–20:00 · Tue–Sat 8:00–20:00" data-pt="Seg 9h–20h · Ter–Sáb 8h–20h" data-es="Lun 9:00–20:00 · Mar–Sáb 8:00–20:00" data-fr="Lun 9h–20h · Mar–Sam 8h–20h">Mon 9:00–20:00 · Tue–Sat 8:00–20:00</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJP1H0m2hlJA0RMzPn2TS8dN0" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="Laundry" data-pt="Lavandaria" data-es="Lavandería" data-fr="Laverie">Laundry</p>
+      <div class="place">
+        <div class="place-header"><div class="place-name">Marlinwash São Bento</div><div class="place-rating">⭐ 5.0</div></div>
+        <div class="place-desc" data-en="New machines, great prices. Self-service, daily 7:30–21:30." data-pt="Máquinas novas, ótimos preços. Self-service, diário 7h30–21h30." data-es="Máquinas nuevas, excelentes precios. Self-service, diario 7:30–21:30." data-fr="Nouvelles machines, excellents prix. Self-service, quotidien 7h30–21h30.">New machines, great prices. Self-service, daily 7:30–21:30.</div>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJJ2KBbfllJA0RzJwb3gPAGK4" target="_blank" class="map-link">📍 <span data-en="View on map" data-pt="Ver no mapa" data-es="Ver en el mapa" data-fr="Voir sur la carte">View on map</span></a>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px" data-en="ATM / Cash" data-pt="Multibanco" data-es="Cajero" data-fr="Distributeur">ATM / Cash</p>
+      <div class="place">
+        <div class="place-name" data-en="Multibanco — nearby" data-pt="Multibanco — nas proximidades" data-es="Cajero — en las cercanías" data-fr="Distributeur — à proximité">Multibanco — nearby</div>
+        <div class="place-desc" data-en="Use Multibanco (MB) machines — avoid Euronet (high fees)." data-pt="Usa máquinas Multibanco (MB) — evita Euronet (taxas altas)." data-es="Usa cajeros Multibanco (MB) — evita Euronet (comisiones altas)." data-fr="Utilisez les distributeurs Multibanco (MB) — évitez Euronet (frais élevés).">Use Multibanco (MB) machines — avoid Euronet (high fees).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🧳</div>
+      <div class="section-title" data-en="Luggage storage" data-pt="Guarda-bagagem" data-es="Consigna de equipaje" data-fr="Consigne à bagages">Luggage storage</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="service-item">
+        <div class="service-name">Bounce</div>
+        <div class="service-desc" data-en="Storage locations nearby from €1/day. 5% discount with our link." data-pt="Locais perto a partir de €1/dia. 5% desconto." data-es="Locales cercanos desde €1/día. 5% descuento." data-fr="Lieux à proximité à partir de 1€/jour. 5% de réduction.">Storage locations nearby from €1/day. 5% discount with our link.</div>
+        <a href="https://go.bounce.com/PORTOHAVEN7471817336" target="_blank" class="map-link">🔗 <span data-en="Book with discount" data-pt="Reservar com desconto" data-es="Reservar con descuento" data-fr="Réserver avec réduction">Book with discount</span></a>
+      </div>
+      <div class="service-item">
+        <div class="service-name">LUGGit</div>
+        <div class="service-desc" data-en="Collects and delivers your bags wherever and whenever. 10% discount." data-pt="Recolhe e entrega onde quiseres. 10% desconto." data-es="Recoge y entrega donde quieras. 10% descuento." data-fr="Récupère et livre vos bagages. 10% de réduction.">Collects and delivers your bags wherever and whenever. 10% discount.</div>
+        <a href="https://luggit.app/partner/porto-haven" target="_blank" class="map-link">🔗 <span data-en="Book with discount" data-pt="Reservar com desconto" data-es="Reservar con descuento" data-fr="Réserver avec réduction">Book with discount</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🗺️</div>
+      <div class="section-title" data-en="Things to do" data-pt="O que visitar" data-es="Qué hacer" data-fr="À faire">Things to do</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="place">
+        <div class="place-name" data-en="Ponte D. Luís I — you're right under it!" data-pt="Ponte D. Luís I — estás mesmo debaixo dela!" data-es="Puente D. Luís I — ¡estás justo debajo!" data-fr="Pont D. Luís I — vous êtes juste en dessous !">Ponte D. Luís I — you're right under it!</div>
+        <div class="place-desc" data-en="Cross on foot to Gaia for Port wine cellars, cable car and breathtaking views of Porto." data-pt="Atravessa a pé até Gaia para as caves de vinho do Porto, teleférico e vistas de cortar a respiração." data-es="Cruza a pie hasta Gaia para las bodegas, teleférico y vistas impresionantes de Oporto." data-fr="Traversez à pied jusqu'à Gaia pour les caves de porto, le téléphérique et des vues époustouflantes.">Cross on foot to Gaia for Port wine cellars, cable car and breathtaking views of Porto.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Ribeira — steps from your door" data-pt="Ribeira — a passos da tua porta" data-es="Ribeira — a pasos de tu puerta" data-fr="Ribeira — à quelques pas de votre porte">Ribeira — steps from your door</div>
+        <div class="place-desc" data-en="One of Porto's most iconic neighbourhoods. Beautiful squares, restaurants and the river at your feet." data-pt="Um dos bairros mais icónicos do Porto. Praças bonitas, restaurantes e o rio aos teus pés." data-es="Uno de los barrios más icónicos de Oporto. Hermosas plazas, restaurantes y el río a tus pies." data-fr="L'un des quartiers les plus emblématiques de Porto. Belles places, restaurants et la rivière à vos pieds.">One of Porto's most iconic neighbourhoods. Beautiful squares, restaurants and the river at your feet.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="São Bento Station (8 min walk)" data-pt="Estação de São Bento (8 min a pé)" data-es="Estación São Bento (8 min andando)" data-fr="Gare de São Bento (8 min à pied)">São Bento Station (8 min walk)</div>
+        <div class="place-desc" data-en="Breathtaking azulejo tile panels — free to enter." data-pt="Painéis de azulejos de cortar a respiração — entrada gratuita." data-es="Impresionantes azulejos — entrada gratuita." data-fr="Magnifiques azulejos — entrée gratuite.">Breathtaking azulejo tile panels — free to enter.</div>
+      </div>
+      <div class="place">
+        <div class="place-name">Livraria Lello</div>
+        <div class="place-desc" data-en="One of the world's most beautiful bookshops. Book tickets online." data-pt="Uma das livrarias mais bonitas do mundo. Bilhetes online." data-es="Una de las librerías más bonitas del mundo. Entradas online." data-fr="L'une des plus belles librairies du monde. Billets en ligne.">One of the world's most beautiful bookshops. Book tickets online.</div>
+      </div>
+      <div class="place">
+        <div class="place-name" data-en="Torre dos Clérigos" data-pt="Torre dos Clérigos" data-es="Torre dos Clérigos" data-fr="Tour dos Clérigos">Torre dos Clérigos</div>
+        <div class="place-desc" data-en="360° panoramic views of Porto. Worth the climb." data-pt="Vistas panorâmicas 360° do Porto. Vale a subida." data-es="Vistas panorámicas 360° de Oporto. Vale la pena." data-fr="Vue panoramique à 360° sur Porto. Ça vaut le détour.">360° panoramic views of Porto. Worth the climb.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">📋</div>
+      <div class="section-title" data-en="House rules" data-pt="Regras da casa" data-es="Normas de la casa" data-fr="Règles de la maison">House rules</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="rule"><div class="rule-icon">🚭</div><span data-en="No smoking" data-pt="Proibido fumar" data-es="Prohibido fumar" data-fr="Défense de fumer">No smoking</span></div>
+      <div class="rule"><div class="rule-icon">🎉</div><span data-en="No parties or events" data-pt="Sem festas ou eventos" data-es="Sin fiestas ni eventos" data-fr="Pas de fêtes ni d'événements">No parties or events</span></div>
+      <div class="rule"><div class="rule-icon">🐾</div><span data-en="No pets" data-pt="Sem animais" data-es="No se admiten mascotas" data-fr="Animaux interdits">No pets</span></div>
+      <div class="rule"><div class="rule-icon">🚫</div><span data-en="No external visitors" data-pt="Sem visitas externas" data-es="Sin visitas externas" data-fr="Pas de visiteurs extérieurs">No external visitors</span></div>
+      <div class="rule"><div class="rule-icon">📖</div><span data-en="Instruction manuals in the TV stand/console in the living room." data-pt="Manuais de instruções na consola/móvel de TV na sala." data-es="Manuales de instrucciones en el mueble TV del salón." data-fr="Manuels d'instructions dans le meuble TV du salon.">Instruction manuals in the TV stand/console in the living room.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-icon">🆘</div>
+      <div class="section-title" data-en="Emergency contacts" data-pt="Contactos de emergência" data-es="Contactos de emergencia" data-fr="Contacts d'urgence">Emergency contacts</div>
+      <div class="section-chevron">›</div>
+    </div>
+    <div class="section-body">
+      <div class="emergency-box">
+        <div class="emergency-title" data-en="Emergency numbers" data-pt="Números de emergência" data-es="Números de emergencia" data-fr="Numéros d'urgence">Emergency numbers</div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Emergency (EU)" data-pt="Emergência" data-es="Emergencias" data-fr="Urgences">Emergency (EU)</span><span class="emergency-num">112</span></div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Police (PSP)" data-pt="Polícia" data-es="Policía" data-fr="Police">Police (PSP)</span><span class="emergency-num">222 092 000</span></div>
+        <div class="emergency-row"><span class="emergency-label" data-en="Hospital St António" data-pt="Hospital St António" data-es="Hospital St António" data-fr="Hôpital St António">Hospital St António</span><span class="emergency-num">222 077 500</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <p data-en="Porto Haven · Under the Luís I Bridge · We hope you have a wonderful stay!" data-pt="Porto Haven · Under the Luís I Bridge · Esperamos que tenhas uma estadia maravilhosa!" data-es="Porto Haven · Under the Luís I Bridge · ¡Esperamos que tengas una estancia maravillosa!" data-fr="Porto Haven · Under the Luís I Bridge · Nous vous souhaitons un merveilleux séjour !">Porto Haven · Under the Luís I Bridge · We hope you have a wonderful stay!</p>
+</div>
+<script>
+function toggle(h){const b=h.nextElementSibling;const o=b.classList.contains('open');b.classList.toggle('open',!o);h.classList.toggle('open',!o)}
+function setLang(l){document.querySelectorAll('[data-en]').forEach(e=>{e.textContent=e.getAttribute('data-'+l)||e.getAttribute('data-en')});const m={'en':'English','pt':'Português','es':'Español','fr':'Français'};document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.textContent===m[l])})}
+</script>
+</body>
+</html>
